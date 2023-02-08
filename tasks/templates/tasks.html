@@ -1,0 +1,27 @@
+{%extends "base.html"%}
+
+{%block content%}
+<main class="container">
+    <h1 class="display-2">TAREAS</h1>
+
+    <ul class="list-group">
+        {% for task in task %}
+            <a class="list-group-item" href=" {% url 'task_detail' task.id %}">
+                <header class="d-flex justify-content-between">
+                    {% if task.importante %}
+                    <h1 class="text-danger">{{ task.titulo }}</h1>
+                    {% else %}
+                    <h1 class="text">{{ task.titulo }}</h1>
+                    {% endif %}
+                    {% if task.completada == False %}
+                    <h5>Tarea pendiente desde {{ task.fechacreacion }}</h5>
+                    {% else %}
+                    <h5>Tarea completada</h5>
+                    {% endif %}
+                </header>
+            </a>
+        {% endfor %}
+    </ul>
+</main>
+
+{% endblock %}
